@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+
+
+
+
+  <style>
+    body {
+      background-color: #6D4C41;
+      height: 100vh;
+    }
+
+    .card {
+      backdrop-filter: blur(10px);
+      background: rgba(240, 240, 240, 0.95); /* gris suave */
+      border-radius: 15px;
+    }
+
+    .btn-custom {
+      background-color: #6D4C41;
+      color: white;
+    }
+
+    .btn-custom:hover {
+      background-color: #6D4C41;
+    }
+
+    h3 {
+      color: #6D4C41;
+    }
+
+    a {
+      color: #6D4C41;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+  <div class="card p-4 shadow" style="width: 350px;">
+    
+    <h3 class="text-center mb-4">Registro</h3>
+
+    <input type="email" id="email" class="form-control mb-3" placeholder="Correo">
+    
+    <input type="password" id="password" class="form-control mb-3" placeholder="Contraseña">
+
+    <button onclick="registrar()" class="btn btn-custom w-100 mb-3">
+      Registrarse
+    </button>
+
+    <p id="mensaje" class=""></p>
+
+    <hr>
+
+    <div class="text-center">
+      <a href="index.html">¿Ya tienes cuenta? Inicia sesión</a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+async function registrar() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+   // 🔐 VALIDACIÓN DE CONTRASEÑA (AQUÍ)
+  const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+
+  if (!regex.test(password)) {
+    document.getElementById("mensaje").innerText =
+      "Contraseña insegura. Usa mínimo 8 caracteres, una mayúscula, un número y un símbolo";
+    return; // ⛔ DETIENE EL REGISTRO
+  }
+
+
+// 🚀 SI PASA VALIDACIÓN, AHORA SÍ ENVÍA
+
+  const res = await fetch("http://localhost:3000/registro", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if (data.mensaje === "Usuario registrado") {
+    window.location.href = "Index.html";
+  } else {
+    document.getElementById("mensaje").innerText = data.mensaje;
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #6D4C41;
+}
+
+.titulo{
+    text-align: center;
+
+    color: #fff3e0;
+
+    font-size: 80px;
+
+    font-family: Georgia;
+
+    letter-spacing: 6px;
+
+    text-shadow: 3px 3px 8px black;
+
+
+
+    padding: 80px;
+    margin: 20px;
+
+
+
+    border-radius: 15px;
+}
+
+
+
+
+
+.contenedor{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+   
+
+}
+
+.postres{
+    text-align: center;
+    color: #fff3e0;
+
+    font-size: 50px;
+
+    letter-spacing: 5px;
+
+    text-shadow: 4px 4px 10px black;
+
+    font-family: Georgia;
+
+
+
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+
+/* aqui se dio tamaño y color y altura  a las cajas div*/
+.flex-items{
+    width: 250px;
+    height: 350px;
+    background-color:antiquewhite;
+    margin: 10px;
+    border-radius: 20px;
+    
+
+}
+
+/* aqui se centraron los subtitulos que tengan h3*/
+.flex-items h3{
+    text-align: center;
+    font-family: Georgia;
+     /* aqui se puso bordes por arriba y por debajo */
+    border-top: 3px solid brown;
+    border-bottom: 3px solid brown;
+ /* aqui se dio color de fondo */
+    background-color: white;
+}
+
+/* aqui damos el mismo tamaño a todas las imagenes y ponemos= object-fit: cover: que hace que todas tengan
+el mismo tamaño, que no se deformen aunque sean diferentes y que queden todas alineadas al centro */
+.flex-items img{
+        width: 200px;
+    height: 150px;
+    object-fit: cover;
+
+    display: block;
+    margin: auto;
+    border-radius: 20px;
+
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:1000;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.7);
+}
+
+/* CONTENIDO */
+.modal-content{
+    background:white;
+
+    width:80%;
+    max-width:400px;
+
+    margin:5% auto;
+    padding:20px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    position:relative;
+}
+
+
+
+
+/* IMAGEN */
+.img-modal{
+    width:100%;
+    border-radius:10px;
+}
+
+/* CERRAR */
+.cerrar{
+    position:absolute;
+    right:15px;
+    top:10px;
+
+    font-size:30px;
+    cursor:pointer;
+}
+
+.btn{
+    text-align: center;
+    margin: 10px auto;
+
+}
+
+.signo{
+    font-size: 45px;
+}
+
+.precio{
+    font-size: 35px;
+    text-align: center;
+}
+
+.entrada{
+    text-align: center;
+    color: #f5e6ca;
+        border-top: 3px solid #d7b899;
+    border-bottom: 3px solid #d7b899;
+    
+
+
+    margin: 30px;
+
+    font-style: italic;
+}
+
+/* aqui se acomodo a la izquierda las listas ul li */
+.listas{
+    width: 200px;
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+.listas li{
+    text-align: left;
+}

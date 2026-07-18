@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Recuperar contraseña</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: darkgrey;
+      height: 100vh;
+    }
+
+    .card {
+      backdrop-filter: blur(10px);
+      background: rgba(240, 240, 240, 0.95); /* gris */
+      border-radius: 15px;
+      
+    }
+
+    .btn-custom {
+      background-color: #6D4C41;
+      color: white;
+    }
+
+    .btn-custom:hover {
+      background-color: #6D4C41;
+    }
+
+    h3 {
+      color: #6D4C41;
+    }
+
+    a {
+      color: #6D4C41;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container d-flex justify-content-start align-items-center vh-100">
+
+  <div class="card p-4 shadow" style="width: 350px;">
+    
+    <h3 class="text-center mb-4">Recuperar contraseña</h3>
+
+    <input type="email" id="email" class="form-control mb-3" placeholder="Correo">
+
+    <button onclick="recuperar()" class="btn btn-custom w-100 mb-3">
+      Enviar código
+    </button>
+
+    <p id="mensaje" class="text-center text-danger"></p>
+
+    <hr>
+
+    <div class="text-center">
+      <a href="index.html">Volver al login</a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+async function recuperar() {
+  const email = document.getElementById("email").value;
+
+  const res = await fetch("http://localhost:3000/recuperar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email })
+  });
+
+  const data = await res.json();
+
+  document.getElementById("mensaje").innerText = data.mensaje;
+
+  if (data.mensaje.includes("Código")) {
+    localStorage.setItem("emailReset", email);
+    window.location.href = "reset.html";
+  }
+}
+</script>
+
+</body>
+</html>

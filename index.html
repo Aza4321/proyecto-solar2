@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+
+  <!-- Bootstrap -->
+  <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+
+</head>
+
+<body>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+  <div class="card p-4 shadow" style="width: 350px;">
+    
+    <h3 class="text-center mb-4">Iniciar sesión</h3>
+
+    <input type="email" id="email" class="form-control mb-3" placeholder="Correo">
+    
+    <input type="password" id="password" class="form-control mb-3" placeholder="Contraseña">
+
+    <button onclick="login()" class="btn btn-custom w-100 mb-3">
+      Entrar
+    </button>
+
+    <p id="mensaje" class="text-danger text-center"></p>
+
+    <hr>
+
+    <div class="text-center">
+      <p class="mb-1">
+        ¿No tienes cuenta? 
+        <a href="registro.html">Regístrate</a>
+      </p>
+
+      <a href="recuperar.html">¿Olvidaste tu contraseña?</a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if (data.mensaje.includes("Login")) {
+    window.location.href = "inde.html";
+  } else {
+    document.getElementById("mensaje").innerText = data.mensaje;
+  }
+}
+</script>
+
+</body>
+</html>
